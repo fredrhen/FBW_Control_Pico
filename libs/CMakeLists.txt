@@ -1,0 +1,2 @@
+add_subdirectory(MPU9250)
+include_directories(MPU9250)
