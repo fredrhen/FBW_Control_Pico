@@ -24,7 +24,7 @@
 
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include "hardware/spi.h"
+#include <math.h>
 
 #define PIN_MISO 4
 #define PIN_CS   5
@@ -73,7 +73,7 @@ class MPU9250{
       LP_ACCEL_ODR_250HZ = 10,
       LP_ACCEL_ODR_500HZ = 11
     };
-    MPU9250(int i,uint8_t cs_address);
+    MPU9250(uint8_t cs_address);
     int begin();
     int setAccelRange(AccelRange range);
     int setGyroRange(GyroRange range);

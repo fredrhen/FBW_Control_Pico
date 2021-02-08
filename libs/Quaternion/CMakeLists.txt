@@ -1,0 +1,2 @@
+add_library(Quaternion STATIC Quaternion.cpp)
+target_link_libraries(Quaternion pico_stdlib)

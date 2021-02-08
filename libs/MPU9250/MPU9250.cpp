@@ -1,38 +1,8 @@
-/*
-  MPU9250.cpp
-  Brian R Taylor
-  brian.taylor@bolderflight.com
-  
-  Copyright (c) 2017 Bolder Flight Systems
-  
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <https://www.gnu.org/licenses/>.
-*/
 
 #include "MPU9250.h"
-#include <stdio.h>
-#include "pico/stdlib.h"
 #include "hardware/spi.h"
-#include <math.h>
 
-
-
-
-/* MPU9250 object
- * @param int for i2c or spi (0=i2c, 0!=spi)
- *
- */
-MPU9250::MPU9250(int i, uint8_t cs_pin){
+MPU9250::MPU9250(uint8_t cs_pin){
     _csPin = cs_pin;
     _useSPI = true;
 }

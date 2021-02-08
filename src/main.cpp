@@ -2,31 +2,43 @@
 #include <stdio.h>
 //#include <string.h>
 #include "pico/stdlib.h"
-#include "MPU9250.h"
+#include "../libs/MPU9250/MPU9250.h"
+//#include "../libs/Vector/Vector.h"
+#include "../libs/Attitude/Attitude.h"
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "EndlessLoop"
 
-MPU9250 IMU(0, 5);
+MPU9250 IMU(5);
+Attitude my_atti;
 
 int main() {
     stdio_init_all();
     int i = IMU.begin();
-    absolute_time_t from;
-    int64_t time_diff;
+    IMU.readSensor();
+    my_atti.init(IMU);
 
+    IMU.setAccelCalX(-8.181, 1.00);
+    IMU.setAccelCalY(-4.952, .998);
+    IMU.setAccelCalZ(-0.294, 1.000);
+
+    IMU.setMagCalX(-30.09, 1.027);
+    IMU.setMagCalY(-18.0, .903);
+    IMU.setMagCalZ(-6.53, 1.08);
+
+    int status = IMU.setGyroRange(MPU9250::GYRO_RANGE_250DPS);
+    if (status != 1)
+    {
+        printf("failed \n");
+    }
+
+    printf("Setup Successful \n");
+    float yaw, pitch ,roll;
     while (1) {
-        from = get_absolute_time();
         IMU.readSensor();
-        time_diff = absolute_time_diff_us(from, get_absolute_time());
-
-        printf("Accel. X = %f, Y = %f, Z = %f \n", IMU.getAccelX_mss(), IMU.getAccelY_mss(), IMU.getAccelZ_mss());
-        printf("Gyro. X = %f, Y = %f, Z = %f \n", IMU.getGyroX_rads(), IMU.getGyroY_rads(), IMU.getGyroZ_rads());
-        printf("Magn. X = %f, Y = %f, Z = %f \n", IMU.getMagX_uT(), IMU.getMagY_uT(), IMU.getMagZ_uT());
-        printf("Time taken (us): %lli", time_diff);
-        printf("\n");
-
-        sleep_ms(2000);
+        my_atti.update(IMU);
+        my_atti.ypr(yaw, pitch, roll);
+        printf("Yaw: %.7f, Pitch: %.7f, Roll: %.7f \n", yaw, pitch, roll);
 
     }
 

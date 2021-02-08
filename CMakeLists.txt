@@ -15,3 +15,6 @@ add_subdirectory(src)
 include_directories(libs)
 add_subdirectory(libs)
 
+include_directories(Stream_data)
+add_subdirectory(Stream_data)
+
