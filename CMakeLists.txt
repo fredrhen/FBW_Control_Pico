@@ -18,3 +18,6 @@ add_subdirectory(libs)
 include_directories(Stream_data)
 add_subdirectory(Stream_data)
 
+include_directories(Test_Scripts)
+add_subdirectory(Test_Scripts)
+

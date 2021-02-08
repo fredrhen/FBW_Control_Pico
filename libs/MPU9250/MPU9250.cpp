@@ -408,6 +408,7 @@ int MPU9250::readSensor() {
   _hycounts = (((int16_t)_buffer[17]) << 8) | _buffer[16];
   _hzcounts = (((int16_t)_buffer[19]) << 8) | _buffer[18];
   // transform and convert to float values
+
   _ax = (((float)(tX[0]*_axcounts + tX[1]*_aycounts + tX[2]*_azcounts) * _accelScale) - _axb)*_axs;
   _ay = (((float)(tY[0]*_axcounts + tY[1]*_aycounts + tY[2]*_azcounts) * _accelScale) - _ayb)*_ays;
   _az = (((float)(tZ[0]*_axcounts + tZ[1]*_aycounts + tZ[2]*_azcounts) * _accelScale) - _azb)*_azs;
@@ -417,7 +418,11 @@ int MPU9250::readSensor() {
   _hx = (((float)(_hxcounts) * _magScaleX) - _hxb)*_hxs;
   _hy = (((float)(_hycounts) * _magScaleY) - _hyb)*_hys;
   _hz = (((float)(_hzcounts) * _magScaleZ) - _hzb)*_hzs;
+
+
+
   _t = ((((float) _tcounts) - _tempOffset)/_tempScale) + _tempOffset;
+
   return 1;
 }
 

@@ -1,16 +1,9 @@
-//
-// Created by Freds on 2021-02-07.
-//
 
-//
-// Created by Freds on 2021-02-07.
-//
-
-#include <stdio.h>
+//#include <stdio.h>
 //#include <string.h>
-#include "pico/stdlib.h"
+//#include "pico/stdlib.h"
 #include "../libs/MPU9250/MPU9250.h"
-#include "math.h"
+//#include "math.h"
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "EndlessLoop"

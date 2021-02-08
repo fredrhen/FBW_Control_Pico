@@ -190,6 +190,7 @@ class MPU9250{
     const int16_t tX[3] = {0,  1,  0}; 
     const int16_t tY[3] = {1,  0,  0};
     const int16_t tZ[3] = {0,  0, -1};
+
     // constants
     const float G = 9.807f;
     const float _d2r = 3.14159265359f/180.0f;

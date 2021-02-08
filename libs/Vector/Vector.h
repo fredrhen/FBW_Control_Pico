@@ -23,6 +23,11 @@ public:
 
     }
 
+    Vector(const Vector<T, len> &v2 ){
+        for(int i=0; i<len; ++i) {
+            this[i] = v2[i];
+        }
+    }
 
     ~Vector(){
         delete[] _array;
